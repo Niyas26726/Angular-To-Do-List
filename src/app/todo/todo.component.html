@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    
+    <div class="container ">
+      <h1 class="">To-Do-List</h1>
+  
+      <hr>
+  
+      <form (ngSubmit)="onSubmit(taskForm)" #taskForm="ngForm">
+  
+        <div class="form-group">
+          <label for="exampleInputEmail1">Task</label>
+          <input type="text" class="form-control" id="task" placeholder="Enter Task" ngModel name="task" required>
+          <small *ngIf="taskForm.invalid && taskForm.dirty" id="errorMessage" class="form-text text-danger">Required feild</small>
+        </div>
+  
+        <button [disabled]="taskForm.invalid" id="submitButton" type="submit" class="btn btn-primary">Submit</button>
+  
+      </form>
+  
+      <hr *ngIf="taskArray.length">
+  
+      <table class="table" *ngIf="taskArray.length">
+  
+        <thead>
+          <tr>
+            <th>Tasks</th>
+            <th>Completed</th>
+            <th class="text-end">Delete</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let t of taskArray; index as i">
+            <td>{{t.taskName}}</td>
+            <td><input (change)="onCheck(i)" type="checkbox" id="myCheckbox" class="form-check-input"></td>
+            <td class="text-end"><button class="btn btn-danger btn-sm" (click)="onDelete(i)">Delete</button></td>
+          </tr>
+        </tbody>
+  
+      </table>
+  
+    </div>
+  
+
+  </div>
+
+</body>
+
+</html>
